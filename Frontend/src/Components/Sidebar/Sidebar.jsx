@@ -50,7 +50,7 @@ const Sidebar = () => {
               <div className=''>Account Information</div>
               <div >Profile Account</div>
               <div >Device Management</div>
-              {/* <div >Manage Limited Account</div> */}
+              <div >Manage Limited Account</div>
             </div>
           )}
         
