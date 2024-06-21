@@ -1,13 +1,15 @@
-/* #root {
-} */
-
-.DashContainer{
-    padding: 30px;
+.DashboardContatiner {
+    flex: 1;
 }
+.DashContainer {
+    flex: 1; /* Take the remaining space */
+    padding: 30px;
+    overflow: auto; /* Handle overflow */
+}
+
+
 .DivSeparater {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
-    /* justify-content: center; */
     gap: 30px;
 }

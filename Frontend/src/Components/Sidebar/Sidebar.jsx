@@ -43,10 +43,14 @@ const Sidebar = () => {
           </div>
           {isOpen && dropdowns.account && (
             <div className="dropdown-menu">
-              <NavLink to="/account-info">Account Information</NavLink>
+              {/* <NavLink to="/account-info">Account Information</NavLink>
               <NavLink to="/profile-account">Profile Account</NavLink>
               <NavLink to="/device-management">Device Management</NavLink>
-              <NavLink to="/manage-limited-account">Manage Limited Account</NavLink>
+              <NavLink to="/manage-limited-account">Manage Limited Account</NavLink> */}
+              <div className=''>Account Information</div>
+              <div >Profile Account</div>
+              <div >Device Management</div>
+              <div >Manage Limited Account</div>
             </div>
           )}
         

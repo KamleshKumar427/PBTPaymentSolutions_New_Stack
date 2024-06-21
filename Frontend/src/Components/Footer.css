@@ -1,0 +1,31 @@
+/* src/components/Footer.css */
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .footer-left, .footer-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .footer-left a {
+    color: #007bff;
+  }
+  
+  .footer-right img {
+    margin: 0 10px;
+  }
+  
+  .footer-bottom {
+    margin-top: 10px;
+  }
+  
+  .footer-bottom a {
+    color: #007bff;
+  }
+  
