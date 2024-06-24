@@ -4,20 +4,32 @@ import NewsAndDetails from "./NewsAndDetails";
 import TransactionsBalance from "./TransactionsBalance";
 import Footer from "./Footer";
 
+import PaymentPageManagement from "../Pages/PaymentPage"
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './Dashboard.css';
-const Dashboard = () => {
+
+const Dashboard = (props) => {
     return (
-        <div className="DashboardContatiner">
-            {/* <h1 style={{marginLeft:"400px"}}>Hello</h1> */}
-            {/* <Navbar></Navbar>  */}
+        <div className={`DashboardContainer ${props.sidebarOpen ? 'open' : 'closed'}`}>
+            {/* <Navbar /> */}
             <div className="DashContainer">
-                <ExchangeRates></ExchangeRates>
-                <div className="DivSeparater">
-                    <NewsAndDetails></NewsAndDetails>
-                    <TransactionsBalance></TransactionsBalance>
-                </div>
+                <Routes>
+                    <Route path='/' element={
+                        <div>
+                            <ExchangeRates />
+                            <div className="DivSeparator">
+                                <NewsAndDetails />
+                                <TransactionsBalance />
+                            </div>
+                        </div>
+                    } />
+                    <Route path='/PaymentPage' element={
+                        <PaymentPageManagement />
+                    } />
+                </Routes>
             </div>
-            {/* <Footer></Footer> */}
+            {/* Todo : set the Navbar to top bottom using CSS */}
+            {/* <Footer /> */}
         </div>
     );
 }

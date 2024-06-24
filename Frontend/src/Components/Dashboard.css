@@ -1,15 +1,24 @@
-.DashboardContatiner {
+.DashboardContainer {
     flex: 1;
+    overflow-x: hidden;
 }
 .DashContainer {
-    flex: 1; /* Take the remaining space */
+    flex: 1; 
     padding: 30px;
-    overflow: auto; /* Handle overflow */
+    /* overflow: auto;  */
 }
 
-
-.DivSeparater {
+.DivSeparator {
     display: flex;
     flex-direction: row;
     gap: 30px;
+}
+
+@media screen and (max-width: 767px) {
+    .DivSeparator {
+        flex-direction: column;
+    }  
+    .DashboardContainer.open {
+        /* flex: 2; */
+    } 
 }

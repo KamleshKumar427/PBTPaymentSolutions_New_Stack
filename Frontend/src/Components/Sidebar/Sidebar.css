@@ -1,24 +1,47 @@
-.sidebar-toggle {
+.SidebarContainer {
+  display: flex;
+  height: 100vh;
+
+  /* position: static; */
+}
+
+.sidebar-toggle.open {
     padding: 10px;
     cursor: pointer;
-    text-align: right;
+    /* text-align: right; */
+    position: absolute;
+    z-index: 100000;
+    color: #fff;
+    margin-left: 210px;
+
+  }
+
+.sidebar-toggle.closed {
+  padding: 10px;
+  cursor: pointer;
+  /* text-align: right; */
+  /* position: fixed; */
+  z-index: 100000;
+  color: #fff;
+  margin-left: 45px;
+  position: absolute;
 }
 
 .sidebar {
-    /* position: fixed; */
+    position: sticky;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 280px;
-    /* width: 18%; */
+    /* height: 100%; */
+    height: 100vh;
+
+    width: 250px;
     background-color: #333;
     color: #fff;
     transition: width 0.3s;
-    overflow-x: hidden;
     z-index: 1000;
     font-size: 20px;
+    align-items: stretch;
   }
-
 
 .sidebar-item {
     position: relative;
@@ -32,13 +55,8 @@
 }
 
 .dropdown-menu {
-    /* position: absolute; */
-    /* top: 0; */
-    /* background-color: #444; */
     padding: 10px;
-    /* border: 1px solid #ccc; */
     z-index: 1000;
-    /* display: block; */
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -60,14 +78,14 @@
 .sidebar-nav {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding-top: 20px;
+    padding: 15px;
+    /* margin-top: 10px; */
 }
 
 /* .sidebar-items-lable {
     margin-left: 10px;
 } */
-
-
 
   .dropdown-menu a {
     text-decoration: none;
@@ -77,4 +95,39 @@
 
   .dropdown-menu a:hover {
     background-color: #575757;
+  }
+
+  @media screen and (max-width: 767px) {
+    .sidebar.closed {
+      display: none;
+    }
+    .sidebar.open {
+      width: 175px !important;
+      height: 100%;
+      height: 100vh;
+      margin: 0px;
+      padding: 0px;
+      font-size: medium;
+      
+    }
+    .sidebar-toggle.closed {
+      color: #333;
+      margin-top: 10px;
+      margin-left: 0px;
+      margin-right: auto;
+      position: absolute;
+
+    }
+    .sidebar-toggle.open {
+      margin-top: 6px;
+      margin-left: 140px;
+      position: absolute;
+      
+    }
+    .sidebar-nav {
+
+      padding: 10px;
+      padding-top: 30px;
+      padding-right: 0px;
+    }
   }

@@ -1,66 +1,85 @@
 /* src/components/ExchangeRates.css */
 .exchange-rates-container {
-    background-color: #f8f9fa;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 20px 0;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column; /* Ensure it stacks properly */
+  overflow: auto;
+}
+
+.exchange-rates {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.exchange-info {
+  flex-shrink: 0;
+  margin-bottom: 15px;
+}
+
+.base-currency {
+  color: #3B679E;
+  font-weight: bold;
+}
+
+.rates-scroller {
+  flex-grow: 1;
+  overflow: hidden; /* Ensure overflow is hidden */
+  position: relative;
+  margin: 0 20px;
+}
+
+.rates-content {
+  display: flex;
+  animation: scroll 20s linear infinite;
+}
+
+.rate {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.rate i {
+  margin-right: 5px;
+}
+
+.full-exchange-rates-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
   }
-  
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media screen and (max-width: 767px) {
   .exchange-rates {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .exchange-info {
-    flex-shrink: 0;
-  }
-  
-  .base-currency {
-    color: #3B679E;
-    font-weight: bold;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start */
   }
   
   .rates-scroller {
-    flex-grow: 1;
-    overflow: hidden;
-    position: relative;
-    margin: 0 20px;
+    margin: 0;
   }
-  
-  .rates-content {
-    display: flex;
-    animation: scroll 20s linear infinite;
-  }
-  
-  .rate {
-    margin-right: 20px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .rate i {
-    margin-right: 5px;
-  }
-  
+
   .full-exchange-rates-button {
-    display: flex;
-    justify-content: right;
-    margin-top: 10px;
-    /* background-color: #007bff; */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
+    font-size: small;
+    margin-left: 70px;
   }
-  
-  @keyframes scroll {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  
+}

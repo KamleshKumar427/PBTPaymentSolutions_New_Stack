@@ -6,7 +6,7 @@ const NewsAndDetails = () => {
   return (
     <div className="news-and-details-container">
       <div className="news-and-details-header">
-        <i className="fas fa-bell"></i> VIEW NEWS & DETAILS FROM YOUR ACCOUNT
+        <i className="fas fa-bell"></i>VIEW NEWS & DETAILS FROM YOUR ACCOUNT
       </div>
       <LineSeparater></LineSeparater>
       <div className="news-and-details-content">
