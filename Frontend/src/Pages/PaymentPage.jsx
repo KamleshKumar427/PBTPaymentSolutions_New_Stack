@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FaPalette, FaImage, FaThList, FaPencilAlt, FaEdit, FaCode, FaUpload, FaTrash, FaSave } from 'react-icons/fa';
 import './PaymentPage.css';
 
+import CompanyLogo from "/public/static/PaymentPagesImages/CompanyLogo.png"
+import CompanyThumbnailLogo from "/public/static/PaymentPagesImages/CompanyThumbnailLogo.png"
 
 // Custom component used inside PaymentPage
 const InstructionCard = (porps) => {
@@ -31,7 +33,7 @@ const SampleImageandUploadButtons = (props) => {
     input.click();
   };
 
-  const handleEdit = (imageSrc) => {
+  const handleEdit = () => {
     console.log('Edit button clicked');
   };
 
@@ -127,7 +129,7 @@ const PaymentPageManagement = () => {
           <FaImage className="icon" /> Company Logo
         </button>
         {open.companyLogo && (
-            <SampleImageandUploadButtons imageSrc = {`../../public/static/PaymentPagesImages/CompanyLogo.png`}></SampleImageandUploadButtons>
+            <SampleImageandUploadButtons imageSrc = {CompanyLogo}></SampleImageandUploadButtons>
         )}
       </div>
 
@@ -137,7 +139,7 @@ const PaymentPageManagement = () => {
         </button>
         {open.thumbnailLogo && (
 
-          <SampleImageandUploadButtons imageSrc = {`../../public/static/PaymentPagesImages/CompanyThumbnailLogo.png`}></SampleImageandUploadButtons>
+          <SampleImageandUploadButtons imageSrc = {CompanyThumbnailLogo}></SampleImageandUploadButtons>
         )}
       </div>
 
