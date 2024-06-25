@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import { FaSearch, FaPowerOff, FaLanguage } from 'react-icons/fa';
-import Logo from "../public/static/logo.png";
+import Logo from '/public/static/logo.png'; // Adjusted path
 
 const NavBar = () => {
   return (

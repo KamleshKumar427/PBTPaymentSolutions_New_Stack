@@ -236,7 +236,7 @@ const PaymentPageManagement = () => {
 
       <button className="save-button">
         <FaSave/>
-        #nbps;
+        &nbsp;
         Save
       </button>
     </div>
