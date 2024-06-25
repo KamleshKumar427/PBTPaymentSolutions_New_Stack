@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FaPalette, FaImage, FaThList, FaPencilAlt, FaEdit, FaCode, FaUpload, FaTrash } from 'react-icons/fa';
+import { FaPalette, FaImage, FaThList, FaPencilAlt, FaEdit, FaCode, FaUpload, FaTrash, FaSave } from 'react-icons/fa';
 import './PaymentPage.css';
+
 
 // Custom component used inside PaymentPage
 const InstructionCard = (porps) => {
@@ -126,7 +127,7 @@ const PaymentPageManagement = () => {
           <FaImage className="icon" /> Company Logo
         </button>
         {open.companyLogo && (
-            <SampleImageandUploadButtons imageSrc = {`../../public/images/PaymentPagesImages/CompanyLogo.png`}></SampleImageandUploadButtons>
+            <SampleImageandUploadButtons imageSrc = {`../../public/static/PaymentPagesImages/CompanyLogo.png`}></SampleImageandUploadButtons>
         )}
       </div>
 
@@ -136,7 +137,7 @@ const PaymentPageManagement = () => {
         </button>
         {open.thumbnailLogo && (
 
-          <SampleImageandUploadButtons imageSrc = {`../../public/images/PaymentPagesImages/CompanyThumbnailLogo.png`}></SampleImageandUploadButtons>
+          <SampleImageandUploadButtons imageSrc = {`../../public/static/PaymentPagesImages/CompanyThumbnailLogo.png`}></SampleImageandUploadButtons>
         )}
       </div>
 
@@ -233,7 +234,11 @@ const PaymentPageManagement = () => {
       </div>
 
 
-      <button className="save-button">Save</button>
+      <button className="save-button">
+        <FaSave/>
+        #nbps;
+        Save
+      </button>
     </div>
   );
 };

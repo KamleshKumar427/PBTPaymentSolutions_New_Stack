@@ -1,12 +1,13 @@
 import React from 'react';
 import './Navbar.css';
 import { FaSearch, FaPowerOff, FaLanguage } from 'react-icons/fa';
+import Logo from "../public/static/logo.png";
 
 const NavBar = () => {
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        <img src={"../public/images/logo.png"} alt="OBL Logo" className="logo" />
+        <img src={Logo} alt="OBL Logo" className="logo" />
       </div>
       <div className="navbar-menu">
 
