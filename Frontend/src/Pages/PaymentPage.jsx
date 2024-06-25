@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { FaPalette, FaImage, FaThList, FaPencilAlt, FaEdit, FaCode, FaUpload, FaTrash, FaSave } from 'react-icons/fa';
+import { FaPalette, FaImage, FaThList, FaPencilAlt, FaEdit, FaCode, FaUpload, FaTrash, FaSave, FaRegAddressCard } from 'react-icons/fa';
+import { IoPersonSharp } from "react-icons/io5";
+import { TbListDetails } from "react-icons/tb";
+
+
 import './PaymentPage.css';
 
 import CompanyLogo from "/public/static/PaymentPagesImages/CompanyLogo.png"
@@ -166,7 +170,7 @@ const PaymentPageManagement = () => {
             <p className="warning-box">Fields appearing next to * have been defined as mandatory by the system manager. Please make sure these fields are marked.</p>
             <div className="field-group">
               <div className="field-section">
-                <h4><FaImage className="icon" /> Street address</h4>
+                <h4><FaRegAddressCard className="icon" /> Street address</h4>
                 <label><input type="checkbox" /> Show Street address</label>
                 <label><input type="checkbox" /> Show Street address 2</label>
                 <label><input type="checkbox" /> Show City</label>
@@ -176,14 +180,14 @@ const PaymentPageManagement = () => {
                 <label><input type="checkbox" /> Requires Shipping Address</label>
               </div>
               <div className="field-section">
-                <h4><FaImage className="icon" /> Personal Details</h4>
+                <h4><IoPersonSharp className="icon" /> Personal Details</h4>
                 <label><input type="checkbox" /> Show Email *</label>
                 <label><input type="checkbox" /> Show Phone No. *</label>
                 <label><input type="checkbox" /> Show Personal ID</label>
                 <label><input type="checkbox" /> Show Date Of Birth</label>
               </div>
               <div className="field-section">
-                <h4><FaImage className="icon" /> Merchant Details</h4>
+                <h4><TbListDetails className="icon" /> Merchant Details</h4>
                 <label><input type="checkbox" /> Show merchant details</label>
               </div>
             </div>
@@ -196,7 +200,7 @@ const PaymentPageManagement = () => {
           <FaPencilAlt className="icon" /> Custom Fields
         </button>
         {open.customFields && (
-          <div className="content">
+          <div className="content" >
             <p>Add custom fields to the payment page:</p>
             <input type="text" placeholder="Custom Field 1" />
             <input type="text" placeholder="Custom Field 2" />

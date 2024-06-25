@@ -36,13 +36,14 @@
     /* height: 100%; */
     height: 100vh;
     /* transition: 0.1s ease; */
-
     width: 250px;
     background-color: #333;
     color: #fff;
     z-index: 1000;
     font-size: 20px;
     align-items: stretch;
+    font-size: large;
+    font-weight: normal;
   }
 
 .sidebar-item {
