@@ -1,7 +1,9 @@
 .SidebarContainer {
   display: flex;
   height: 100vh;
-
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 50px;
   /* position: static; */
 }
 
@@ -13,7 +15,6 @@
     z-index: 100000;
     color: #fff;
     margin-left: 210px;
-
   }
 
 .sidebar-toggle.closed {
@@ -28,16 +29,16 @@
 }
 
 .sidebar {
-    position: sticky;
+    /* position: sticky; */
     top: 0;
     left: 0;
     /* height: 100%; */
     height: 100vh;
+    /* transition: 0.1s ease; */
 
     width: 250px;
     background-color: #333;
     color: #fff;
-    transition: width 0.3s;
     z-index: 1000;
     font-size: 20px;
     align-items: stretch;
@@ -52,6 +53,7 @@
     display: flex;
     flex-direction: column;
     transition: background-color 0.3s;
+
 }
 
 .dropdown-menu {
@@ -61,6 +63,7 @@
     flex-direction: column;
     margin-top: 10px;
     margin-left: 20px;
+
   }
 
 .sidebar span {
@@ -99,11 +102,14 @@
 
   @media screen and (max-width: 767px) {
     .sidebar.closed {
-      display: none;
-    }
+       /* display: none; */  
+      font-size: medium;
+
+       width: 60px;
+    } 
     .sidebar.open {
       width: 175px !important;
-      height: 100%;
+      /* height: 100%; */
       height: 100vh;
       margin: 0px;
       padding: 0px;
@@ -111,9 +117,9 @@
       
     }
     .sidebar-toggle.closed {
-      color: #333;
-      margin-top: 10px;
-      margin-left: 0px;
+      /* color: #333; */
+      margin-top: 0px;
+      margin-left: 15px;
       margin-right: auto;
       position: absolute;
 
@@ -125,9 +131,25 @@
       
     }
     .sidebar-nav {
-
       padding: 10px;
       padding-top: 30px;
       padding-right: 0px;
     }
   }
+
+
+.tick-box {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+}

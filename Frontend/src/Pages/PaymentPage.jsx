@@ -1,8 +1,79 @@
 import React, { useState } from 'react';
-import { FaPalette, FaImage, FaThList, FaPencilAlt, FaEdit, FaCode } from 'react-icons/fa';
+import { FaPalette, FaImage, FaThList, FaPencilAlt, FaEdit, FaCode, FaUpload, FaTrash } from 'react-icons/fa';
 import './PaymentPage.css';
 
+// Custom component used inside PaymentPage
+const InstructionCard = (porps) => {
+  return (
+    <div className='logo-instruction'>
+      <ul >
+        <li>
+          File size should be 2MB or less.
+        </li>
+        <li>
+          Recommended dimensions are {porps.height} height and {porps.width} width.
+        </li>
+        <li>
+          You may use files of the following formats: jpg, png, jpeg, gif.
+        </li>
+      </ul>
+  </div>
+  )
+}
+
+const SampleImageandUploadButtons = (props) => {
+  
+  const handleUpload = () => {
+    console.log('Upload button clicked');
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.click();
+  };
+
+  const handleEdit = (imageSrc) => {
+    console.log('Edit button clicked');
+  };
+
+  const handleDelete = () => {
+    console.log('Delete button clicked');
+  };
+
+  return (
+  <div className="content">
+            <InstructionCard height = {"300px"} width = {"300px"}></InstructionCard>
+            <div className='UploadlogosSection' >
+              <div >
+                <img src={props.imageSrc} alt="Sample Logo" className="SampleLogoImages" />
+              </div>
+
+              <div className='LogoButtonSection'>
+                <Button color="#0b3d91" functionality={handleUpload} placeholder="UPLOAD" Icon={FaUpload} />
+                <Button color="#6c757d" functionality={handleEdit} placeholder="EDIT PHOTO" Icon={FaEdit} />
+                <Button color="#dc3545" functionality={handleDelete} placeholder="DELETE" Icon={FaTrash} />
+              </div>
+            </div>
+            
+          </div>)
+}
+
+const Button = ({ color, functionality, placeholder, Icon }) => {
+  return (
+    <button 
+      className='ButtonClass'
+      style={{ backgroundColor: color}}
+      onClick={functionality}
+    >
+      {Icon && <Icon style={{ marginRight: '8px' }} />}
+      {placeholder}
+    </button>
+  );
+};
+
 const PaymentPageManagement = () => {
+
+  const [selectedColor, setSelectedColor] = useState(null);
+
+
   const [open, setOpen] = useState({
     colorTheme: true,
     companyLogo: false,
@@ -20,21 +91,32 @@ const PaymentPageManagement = () => {
     }));
   };
 
+  const handleColorClick = (color) => {
+    setSelectedColor(color);
+  };
+
   return (
     <div className="payment-page-management">
       <h3>Payment Page Management</h3>
 
       <div className="option">
         <button onClick={() => toggleOpen('colorTheme')} className="toggle-button">
-          <FaPalette className="icon" /> Choose Color Theme 
+          <FaPalette className="icon" /> Choose Color Theme
         </button>
         {open.colorTheme && (
-          <div className="content">
-            <div className="color-options">
-              {['blue', 'green', 'gray', 'orange', 'purple', 'red'].map(color => (
-                <div key={color} className="color-box" style={{ backgroundColor: color }} />
-              ))}
+          <div className="color-options content" >
+          {['blue', 'green', 'gray', 'orange', 'purple', 'red'].map((color) => (
+            <div
+              key={color}
+              className="color-box"
+              style={{ backgroundColor: color, position: 'relative' }}
+              onClick={() => handleColorClick(color)}
+            >
+              {selectedColor === color && (
+                <div className="tick-box">&#10003;</div>
+              )}
             </div>
+          ))}
           </div>
         )}
       </div>
@@ -44,10 +126,7 @@ const PaymentPageManagement = () => {
           <FaImage className="icon" /> Company Logo
         </button>
         {open.companyLogo && (
-          <div className="content">
-            <p>Upload your company logo here.</p>
-            <input type="file" />
-          </div>
+            <SampleImageandUploadButtons imageSrc = {`../../public/images/PaymentPagesImages/CompanyLogo.png`}></SampleImageandUploadButtons>
         )}
       </div>
 
@@ -56,10 +135,8 @@ const PaymentPageManagement = () => {
           <FaImage className="icon" /> Company Thumbnail Logo
         </button>
         {open.thumbnailLogo && (
-          <div className="content">
-            <p>Upload your company thumbnail logo here.</p>
-            <input type="file" />
-          </div>
+
+          <SampleImageandUploadButtons imageSrc = {`../../public/images/PaymentPagesImages/CompanyThumbnailLogo.png`}></SampleImageandUploadButtons>
         )}
       </div>
 
@@ -82,7 +159,7 @@ const PaymentPageManagement = () => {
         </button>
         {open.selectFields && (
           <div className="content">
-            <p className="info-box">displaying further fields on the payment page and receiving extra information on the clients can be marked here.</p>
+            <p className="info-box">Displaying further fields on the payment page and receiving extra information on the clients can be marked here.</p>
             <p className="warning-box">Fields appearing next to * have been defined as mandatory by the system manager. Please make sure these fields are marked.</p>
             <div className="field-group">
               <div className="field-section">

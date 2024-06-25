@@ -6,17 +6,17 @@ import { NavLink } from 'react-router-dom';
 
 
 const Sidebar = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
-  // To identify where the website is loaded on mobile device or desktop
-
-  useEffect(()=>{
-    const mediaQuery = window.matchMedia('(max-width: 767px)');
-    setIsOpen(!mediaQuery.matches);
-    props.setSidebarOpen(!mediaQuery.matches);
-    // mediaQuery.addEventListener('change', handleResize);
-    // return () => mediaQuery.removeEventListener('change', handleResize);
-  },[])
+  // To identify where the website is loaded on mobile device or desktop and set sidebar accordingly
+  
+  // useEffect(()=>{
+  //   const mediaQuery = window.matchMedia('(max-width: 767px)');
+  //   setIsOpen(!mediaQuery.matches);
+  //   props.setSidebarOpen(!mediaQuery.matches);
+  //   // mediaQuery.addEventListener('change', handleResize);
+  //   // return () => mediaQuery.removeEventListener('change', handleResize);
+  // },[])
 
   const [dropdowns, setDropdowns] = useState({
     account: false,
@@ -36,6 +36,7 @@ const Sidebar = (props) => {
   };
 
   const toggleDropdown = (name) => {
+    openSidebar()
     setDropdowns((prev) => ({ ...prev, [name]: !prev[name] }));
   };
 
@@ -44,17 +45,24 @@ const Sidebar = (props) => {
     props.setSidebarOpen(false);
   }
 
+  const openSidebar = () => {
+    // if(!isOpen){
+    setIsOpen(true);
+    props.setSidebarOpen(true); 
+  // }
+  }
+
   return (
     <div className='SidebarContainer'>
       <div className={`sidebar-toggle ${isOpen ? 'open' : 'closed'}`} onClick={toggleSidebar}>
-        <FaBars/>
+        <FaBars size={20}/>
       </div>
       <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
         <nav className='sidebar-nav'>
 
           <div className='sidebar-item' >
 
-            <div onClick={() => toggleDropdown('account')}>
+            <div onClick={() => toggleDropdown('account')} >
               <FaUserFriends style={iconStyle} />
               {isOpen && <span >Account {dropdowns.account ? <FaAngleUp style={iconStyle} /> : <FaAngleDown style={iconStyle} />} </span>}
             </div>
@@ -72,43 +80,43 @@ const Sidebar = (props) => {
           </div>
 
           <div className='sidebar-item'  >
-            <div>
+            <div onClick={() => toggleDropdown('transactions')}>
               <FaCreditCard style={iconStyle} />
               {isOpen && <span >Transactions {dropdowns.transactions ? <FaAngleUp style={iconStyle} /> : <FaAngleDown style={iconStyle} />} </span>}
             </div>
 
           </div>
-          <div className='sidebar-item'>
-            <div>
+          <div className='sidebar-item' >
+            <div onClick={() => toggleDropdown('balance')}>
               <FaBalanceScale style={iconStyle} />
               {isOpen && <span >Balance {dropdowns.balance ? <FaAngleUp style={iconStyle} /> : <FaAngleDown style={iconStyle} />} </span>}
             </div>
           </div>
-          <div className='sidebar-item'>
+          <div className='sidebar-item' >
             <div>
-              <FaTools style={iconStyle} />
+              <FaTools style={iconStyle} onClick={() => toggleDropdown('tools')}/>
               {isOpen && <span >Tools {dropdowns.tools ? <FaAngleUp style={iconStyle} /> : <FaAngleDown style={iconStyle} />}</span>}
             </div>
           </div>
-          <div className='sidebar-item'>
-            <div>
+          <div className='sidebar-item' >
+            <div onClick={() => toggleDropdown('services')}>
               <FaCogs style={iconStyle} />
               {isOpen && <span >Services {dropdowns.services ? <FaAngleUp style={iconStyle} /> : <FaAngleDown style={iconStyle} />}</span>}
             </div>
           </div>
-          <div className='sidebar-item'>
-            <div>
+          <div className='sidebar-item' >
+            <div onClick={() => toggleDropdown('risk')}>
               <FaShieldAlt style={iconStyle} />
               {isOpen && <span >Risk {dropdowns.risk ? <FaAngleUp style={iconStyle} /> : <FaAngleDown style={iconStyle} />}</span>}
             </div>
           </div>
-          <div className='sidebar-item'>
-            <div>
+          <div className='sidebar-item' >
+            <div onClick={() => toggleDropdown('shops')}>
               <FaStore style={iconStyle} />
               {isOpen && <span >Shops {dropdowns.shops ? <FaAngleUp style={iconStyle} /> : <FaAngleDown style={iconStyle} />}</span>}
             </div>
           </div>
-          <div className='sidebar-item'>
+          <div className='sidebar-item' >
             <div>
               <div onClick={() => toggleDropdown('settings')}>
                 <FaCogs style={iconStyle} />

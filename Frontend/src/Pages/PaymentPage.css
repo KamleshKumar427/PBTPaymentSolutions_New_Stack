@@ -1,3 +1,6 @@
+[class] {
+  overflow: auto;
+}
 .payment-page-management {
   padding: 20px;
 }
@@ -34,17 +37,25 @@
   border-top: none;
 }
 
+
 .color-options {
   display: flex;
+  gap: 10px;
 }
 
+
 .color-box {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  border-radius: 5px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
+  border: 1px solid #000; /* Optional: Add a border to each color box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin: 5px;
 }
+
 
 .field-group {
   display: flex;
@@ -108,4 +119,55 @@
 
 .save-button:hover {
   background-color: #0056b3;
+}
+
+.logo-instruction {
+  background-color: #ebf6fb;
+  border: 1px solid #bfd4de;
+  margin-bottom: 20px;
+  color: #246a8e;
+}
+
+
+.logo-instruction li {
+  margin: 10px 0;
+  /* overflow-x: scroll; */
+}
+
+.UploadlogosSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+
+.LogoButtonSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.SampleLogoImages {
+  width: 100%;
+  border: 1px solid #b9b9b9;
+}
+
+.ButtonClass {
+  border:  1px solid black;
+  padding: '10px 20px';
+  color: '#fff';
+  cursor: 'pointer';
+  color: white;
+  border-radius: 5px;
+  width: 150px;
+  height: 30px;
+}
+
+
+@media screen and (max-width: 767px){
+  .UploadlogosSection {
+    flex-direction: column;
+  }
 }

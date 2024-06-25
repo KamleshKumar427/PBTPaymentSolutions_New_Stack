@@ -1,67 +1,96 @@
-
 .navbar {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* align-items: left; */
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    /* padding: 5px; */
-    color: #808080;
-    width: 100%;
-}
-
-.list-container {
-    box-decoration-break: none;
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    margin-right: 10px;
-
-}
-
-.list-items {
-    margin-left: 20px;
-    cursor: pointer;
     align-items: center;
-}
-
-.nav-first-sec  {
-    margin-left: 8px;
-    margin-right: 8px;
-
-    display: flex;
-    flex-direction: row;
+    position: sticky;
     justify-content: space-between;
-}
-
-.nav-second-sec {
-    margin-left: 8px;
-    margin-right: 8px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.navbar-left {
+    background-color: #333;
+    padding: 10px;
+    color: white;
+  }
+  
+  .navbar-logo .logo {
+    height: 30px;
+    /* width: 100%; */
+    margin-left: 10px;
+    overflow-x: hidden;
+  }
+  
+  .navbar-menu {
     display: flex;
     align-items: center;
-}
-
-.navbar-right {
+    flex-grow: 1;
+    justify-content: space-evenly;
+  }
+  
+  .menu-item {
     display: flex;
     align-items: center;
   }
-
-.nav-third-sec {
-    /* align-items: center; */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    /* background: linear-gradient(to right, #0000ff 0%, #3c0dd5 100%); */
-    background-color: #007bff;
+  
+  .dropdown {
+    background-color: #444;
+    border: none;
     color: white;
-    border-radius: 5px;
-
-}
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .search-input {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 5px;
+    margin-right: 5px;
+    max-width: 200px;
+  }
+  
+  .search-button {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #555;
+  }
+  
+  .navbar-user {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-name {
+    margin-right: 10px;
+  }
+  
+  .logout-button {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    background-color: #555;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-menu {
+      flex-direction: column;
+    }
+  
+    .search-input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .navbar-menu {
+        display: none;
+    }
+    .navbar-logo .logo {
+        scale: 1.1;
+    }
+  }
+  

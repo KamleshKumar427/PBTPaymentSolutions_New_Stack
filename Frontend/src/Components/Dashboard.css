@@ -18,7 +18,9 @@
     .DivSeparator {
         flex-direction: column;
     }  
-    .DashboardContainer.open {
-        /* flex: 2; */
-    } 
+
+    .DashContainer {
+        padding: 15px;
+
+    }
 }
