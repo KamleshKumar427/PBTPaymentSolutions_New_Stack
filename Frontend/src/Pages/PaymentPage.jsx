@@ -1,85 +1,205 @@
-import React, { useState } from 'react';
-import { FaPalette, FaImage, FaThList, FaPencilAlt, FaEdit, FaCode, FaUpload, FaTrash, FaSave, FaRegAddressCard } from 'react-icons/fa';
+import React, { useState } from "react";
+import {
+  FaPalette,
+  FaImage,
+  FaThList,
+  FaPencilAlt,
+  FaEdit,
+  FaCode,
+  FaUpload,
+  FaTrash,
+  FaSave,
+  FaRegAddressCard,
+} from "react-icons/fa";
 import { IoPersonSharp } from "react-icons/io5";
 import { TbListDetails } from "react-icons/tb";
 
+import "./PaymentPage.css";
 
-import './PaymentPage.css';
-
-import CompanyLogo from "/public/static/PaymentPagesImages/CompanyLogo.png"
-import CompanyThumbnailLogo from "/public/static/PaymentPagesImages/CompanyThumbnailLogo.png"
+import CompanyLogo from "/public/static/PaymentPagesImages/CompanyLogo.png";
+import CompanyThumbnailLogo from "/public/static/PaymentPagesImages/CompanyThumbnailLogo.png";
 
 // Custom component used inside PaymentPage
 const InstructionCard = (porps) => {
   return (
-    <div className='logo-instruction'>
-      <ul >
+    <div className="logo-instruction">
+      <ul>
+        <li>File size should be 2MB or less.</li>
         <li>
-          File size should be 2MB or less.
-        </li>
-        <li>
-          Recommended dimensions are {porps.height} height and {porps.width} width.
+          Recommended dimensions are {porps.height} height and {porps.width}{" "}
+          width.
         </li>
         <li>
           You may use files of the following formats: jpg, png, jpeg, gif.
         </li>
       </ul>
-  </div>
-  )
-}
+    </div>
+  );
+};
+
+const EditTextsSection = () => {
+  const [languages, setLanguages] = useState([
+    { name: "English", default: true },
+    { name: "Chiness", default: false },
+  ]);
+  const [newLanguage, setNewLanguage] = useState("");
+  const [activeLanguage, setActiveLanguage] = useState("English");
+
+  const addLanguage = () => {
+    if (newLanguage && !languages.find((lang) => lang.name === newLanguage)) {
+      setLanguages([...languages, { name: newLanguage, default: false }]);
+      setNewLanguage("");
+    }
+  };
+
+  const removeLanguage = (name) => {
+    setLanguages(languages.filter((lang) => lang.name !== name));
+    if (activeLanguage === name) setActiveLanguage(languages[0].name);
+  };
+
+  return (
+    <div className="language-panel-container">
+      <div className="language-tabs">
+        {languages.map((lang, index) => (
+          <button
+            key={index}
+            className={`tab ${activeLanguage === lang.name ? "active" : ""}`}
+            onClick={() => setActiveLanguage(lang.name)}
+          >
+            {lang.name}
+          </button>
+        ))}
+        <button
+          className="tab add-tab"
+          onClick={() => document.getElementById("addLanguageInput").focus()}
+        >
+          ADD LANGUAGE
+        </button>
+      </div>
+
+      <div className="add-language">
+        <label>Add language option to payment page</label>
+        <input
+          id="addLanguageInput"
+          value={newLanguage}
+          onChange={(e) => setNewLanguage(e.target.value)}
+          placeholder="Enter language name"
+        />
+        <button onClick={addLanguage}>ADD</button>
+      </div>
+
+      {languages.map(
+        (lang, index) =>
+          activeLanguage === lang.name && (
+            <div key={index} className="language-form">
+              <h3>{lang.name}</h3>
+              <div className="form-group">
+                <input type="checkbox" checked={lang.default} readOnly />
+                <label>Set as default language</label>
+              </div>
+              <div className="form-group">
+                <label>Text to be shown above payment form:</label>
+                <textarea></textarea>
+              </div>
+              <div className="form-group">
+                <label>Text to be shown below payment form:</label>
+                <textarea></textarea>
+              </div>
+              <div className="form-group">
+                <label>Successful Charge Text:</label>
+                <textarea></textarea>
+              </div>
+              <div className="form-group">
+                <label>Charge Rejected Text:</label>
+                <textarea></textarea>
+              </div>
+              <div className="form-group">
+                <label>Charge Pending Text:</label>
+                <textarea></textarea>
+              </div>
+              {lang.name !== "English" && (
+                <button
+                  className="remove-button"
+                  onClick={() => removeLanguage(lang.name)}
+                >
+                  REMOVE {lang.name.toUpperCase()}
+                </button>
+              )}
+            </div>
+          )
+      )}
+    </div>
+  );
+};
 
 const SampleImageandUploadButtons = (props) => {
-  
   const handleUpload = () => {
-    console.log('Upload button clicked');
-    var input = document.createElement('input');
-    input.type = 'file';
+    console.log("Upload button clicked");
+    var input = document.createElement("input");
+    input.type = "file";
     input.click();
   };
 
   const handleEdit = () => {
-    console.log('Edit button clicked');
+    console.log("Edit button clicked");
   };
 
   const handleDelete = () => {
-    console.log('Delete button clicked');
+    console.log("Delete button clicked");
   };
 
   return (
-  <div className="content">
-            <InstructionCard height = {"300px"} width = {"300px"}></InstructionCard>
-            <div className='UploadlogosSection' >
-              <div >
-                <img src={props.imageSrc} alt="Sample Logo" className="SampleLogoImages" />
-              </div>
+    <div className="content">
+      <InstructionCard height={"300px"} width={"300px"}></InstructionCard>
+      <div className="UploadlogosSection">
+        <div>
+          <img
+            src={props.imageSrc}
+            alt="Sample Logo"
+            className="SampleLogoImages"
+          />
+        </div>
 
-              <div className='LogoButtonSection'>
-                <Button color="#0b3d91" functionality={handleUpload} placeholder="UPLOAD" Icon={FaUpload} />
-                <Button color="#6c757d" functionality={handleEdit} placeholder="EDIT PHOTO" Icon={FaEdit} />
-                <Button color="#dc3545" functionality={handleDelete} placeholder="DELETE" Icon={FaTrash} />
-              </div>
-            </div>
-            
-          </div>)
-}
+        <div className="LogoButtonSection">
+          <Button
+            color="#0b3d91"
+            functionality={handleUpload}
+            placeholder="UPLOAD"
+            Icon={FaUpload}
+          />
+          <Button
+            color="#6c757d"
+            functionality={handleEdit}
+            placeholder="EDIT PHOTO"
+            Icon={FaEdit}
+          />
+          <Button
+            color="#dc3545"
+            functionality={handleDelete}
+            placeholder="DELETE"
+            Icon={FaTrash}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Button = ({ color, functionality, placeholder, Icon }) => {
   return (
-    <button 
-      className='ButtonClass'
-      style={{ backgroundColor: color}}
+    <button
+      className="ButtonClass"
+      style={{ backgroundColor: color }}
       onClick={functionality}
     >
-      {Icon && <Icon style={{ marginRight: '8px' }} />}
+      {Icon && <Icon style={{ marginRight: "8px" }} />}
       {placeholder}
     </button>
   );
 };
 
 const PaymentPageManagement = () => {
-
   const [selectedColor, setSelectedColor] = useState(null);
-
 
   const [open, setOpen] = useState({
     colorTheme: true,
@@ -88,13 +208,13 @@ const PaymentPageManagement = () => {
     selectFields: false,
     customFields: false,
     editTexts: false,
-    trackingCodes: false
+    trackingCodes: false,
   });
 
   const toggleOpen = (section) => {
-    setOpen(prevState => ({
+    setOpen((prevState) => ({
       ...prevState,
-      [section]: !prevState[section]
+      [section]: !prevState[section],
     }));
   };
 
@@ -104,46 +224,67 @@ const PaymentPageManagement = () => {
 
   return (
     <div className="payment-page-management">
-      <h3>Payment Page Management</h3>
+      {/* Separate out the CSS of Previwe button from here */}
+      <div style={{display:"flex", justifyContent:"space-between"}}>
+        <h3>Payment Page Management</h3>
+        <button className="save-button" style={{height:"38px"}}>
+          <FaSave />
+          &nbsp; Preview
+        </button>
+      </div>
 
       <div className="option">
-        <button onClick={() => toggleOpen('colorTheme')} className="toggle-button">
+        <button
+          onClick={() => toggleOpen("colorTheme")}
+          className="toggle-button"
+        >
           <FaPalette className="icon" /> Choose Color Theme
         </button>
         {open.colorTheme && (
-          <div className="color-options content" >
-          {['blue', 'green', 'gray', 'orange', 'purple', 'red'].map((color) => (
-            <div
-              key={color}
-              className="color-box"
-              style={{ backgroundColor: color, position: 'relative' }}
-              onClick={() => handleColorClick(color)}
-            >
-              {selectedColor === color && (
-                <div className="tick-box">&#10003;</div>
-              )}
-            </div>
-          ))}
+          <div className="color-options content">
+            {["blue", "green", "gray", "orange", "purple", "red"].map(
+              (color) => (
+                <div
+                  key={color}
+                  className="color-box"
+                  style={{ backgroundColor: color, position: "relative" }}
+                  onClick={() => handleColorClick(color)}
+                >
+                  {selectedColor === color && (
+                    <div className="tick-box">&#10003;</div>
+                  )}
+                </div>
+              )
+            )}
           </div>
         )}
       </div>
 
       <div className="option">
-        <button onClick={() => toggleOpen('companyLogo')} className="toggle-button">
+        <button
+          onClick={() => toggleOpen("companyLogo")}
+          className="toggle-button"
+        >
           <FaImage className="icon" /> Company Logo
         </button>
         {open.companyLogo && (
-            <SampleImageandUploadButtons imageSrc = {CompanyLogo}></SampleImageandUploadButtons>
+          <SampleImageandUploadButtons
+            imageSrc={CompanyLogo}
+          ></SampleImageandUploadButtons>
         )}
       </div>
 
       <div className="option">
-        <button onClick={() => toggleOpen('thumbnailLogo')} className="toggle-button">
+        <button
+          onClick={() => toggleOpen("thumbnailLogo")}
+          className="toggle-button"
+        >
           <FaImage className="icon" /> Company Thumbnail Logo
         </button>
         {open.thumbnailLogo && (
-
-          <SampleImageandUploadButtons imageSrc = {CompanyThumbnailLogo}></SampleImageandUploadButtons>
+          <SampleImageandUploadButtons
+            imageSrc={CompanyThumbnailLogo}
+          ></SampleImageandUploadButtons>
         )}
       </div>
 
@@ -161,34 +302,73 @@ const PaymentPageManagement = () => {
         )}
       </div> */}
       <div className="option">
-        <button onClick={() => toggleOpen('selectFields')} className="toggle-button">
+        <button
+          onClick={() => toggleOpen("selectFields")}
+          className="toggle-button"
+        >
           <FaThList className="icon" /> Select fields to display
         </button>
         {open.selectFields && (
           <div className="content">
-            <p className="info-box">Displaying further fields on the payment page and receiving extra information on the clients can be marked here.</p>
-            <p className="warning-box">Fields appearing next to * have been defined as mandatory by the system manager. Please make sure these fields are marked.</p>
+            <p className="info-box">
+              Displaying further fields on the payment page and receiving extra
+              information on the clients can be marked here.
+            </p>
+            <p className="warning-box">
+              Fields appearing next to * have been defined as mandatory by the
+              system manager. Please make sure these fields are marked.
+            </p>
             <div className="field-group">
               <div className="field-section">
-                <h4><FaRegAddressCard className="icon" /> Street address</h4>
-                <label><input type="checkbox" /> Show Street address</label>
-                <label><input type="checkbox" /> Show Street address 2</label>
-                <label><input type="checkbox" /> Show City</label>
-                <label><input type="checkbox" /> Show Zip Code</label>
-                <label><input type="checkbox" /> Show State</label>
-                <label><input type="checkbox" /> Show Country</label>
-                <label><input type="checkbox" /> Requires Shipping Address</label>
+                <h4>
+                  <FaRegAddressCard className="icon" /> Street address
+                </h4>
+                <label>
+                  <input type="checkbox" /> Show Street address
+                </label>
+                <label>
+                  <input type="checkbox" /> Show Street address 2
+                </label>
+                <label>
+                  <input type="checkbox" /> Show City
+                </label>
+                <label>
+                  <input type="checkbox" /> Show Zip Code
+                </label>
+                <label>
+                  <input type="checkbox" /> Show State
+                </label>
+                <label>
+                  <input type="checkbox" /> Show Country
+                </label>
+                <label>
+                  <input type="checkbox" /> Requires Shipping Address
+                </label>
               </div>
               <div className="field-section">
-                <h4><IoPersonSharp className="icon" /> Personal Details</h4>
-                <label><input type="checkbox" /> Show Email *</label>
-                <label><input type="checkbox" /> Show Phone No. *</label>
-                <label><input type="checkbox" /> Show Personal ID</label>
-                <label><input type="checkbox" /> Show Date Of Birth</label>
+                <h4>
+                  <IoPersonSharp className="icon" /> Personal Details
+                </h4>
+                <label>
+                  <input type="checkbox" /> Show Email *
+                </label>
+                <label>
+                  <input type="checkbox" /> Show Phone No. *
+                </label>
+                <label>
+                  <input type="checkbox" /> Show Personal ID
+                </label>
+                <label>
+                  <input type="checkbox" /> Show Date Of Birth
+                </label>
               </div>
               <div className="field-section">
-                <h4><TbListDetails className="icon" /> Merchant Details</h4>
-                <label><input type="checkbox" /> Show merchant details</label>
+                <h4>
+                  <TbListDetails className="icon" /> Merchant Details
+                </h4>
+                <label>
+                  <input type="checkbox" /> Show merchant details
+                </label>
               </div>
             </div>
           </div>
@@ -196,32 +376,40 @@ const PaymentPageManagement = () => {
       </div>
 
       <div className="option">
-        <button onClick={() => toggleOpen('customFields')} className="toggle-button">
+        <button
+          onClick={() => toggleOpen("customFields")}
+          className="toggle-button"
+        >
           <FaPencilAlt className="icon" /> Custom Fields
         </button>
         {open.customFields && (
-          <div className="content" >
-            <p>Add custom fields to the payment page:</p>
+          <div className="content">
             <input type="text" placeholder="Custom Field 1" />
+            &nbsp; &nbsp;
             <input type="text" placeholder="Custom Field 2" />
           </div>
         )}
       </div>
 
       <div className="option">
-        <button onClick={() => toggleOpen('editTexts')} className="toggle-button">
+        <button
+          onClick={() => toggleOpen("editTexts")}
+          className="toggle-button"
+        >
           <FaEdit className="icon" /> Edit Texts
         </button>
         {open.editTexts && (
           <div className="content">
-            <p>Edit the texts displayed on the payment page:</p>
-            <textarea placeholder="Edit text here"></textarea>
+            <EditTextsSection></EditTextsSection>
           </div>
         )}
       </div>
 
       <div className="option">
-        <button onClick={() => toggleOpen('trackingCodes')} className="toggle-button">
+        <button
+          onClick={() => toggleOpen("trackingCodes")}
+          className="toggle-button"
+        >
           <FaCode className="icon" /> Tracking Codes
         </button>
         {open.trackingCodes && (
@@ -239,11 +427,9 @@ const PaymentPageManagement = () => {
         )}
       </div>
 
-
       <button className="save-button">
-        <FaSave/>
-        &nbsp;
-        Save
+        <FaSave />
+        &nbsp; Save
       </button>
     </div>
   );
