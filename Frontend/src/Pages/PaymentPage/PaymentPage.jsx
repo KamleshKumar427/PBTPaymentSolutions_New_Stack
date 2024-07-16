@@ -73,7 +73,7 @@ const PaymentPageManagement = () => {
     <div className="payment-page-management">
       {/* Separate out the CSS of Previwe button from here */}
       <div style={{display:"flex", justifyContent:"space-between"}}>
-        <h3>Payment Page Management</h3>
+        <h3>Test Payment Page Management</h3>
         <button className="save-button" style={{height:"38px"}}>
           <FaSave />
           &nbsp; Preview
