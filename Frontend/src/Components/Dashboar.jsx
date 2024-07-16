@@ -4,7 +4,7 @@ import NewsAndDetails from "./NewsAndDetails";
 import TransactionsBalance from "./TransactionsBalance";
 import Footer from "./Footer";
 
-import PaymentPageManagement from "../Pages/PaymentPage"
+import PaymentPageManagement from "../Pages/PaymentPage/PaymentPage"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './Dashboard.css';
 
